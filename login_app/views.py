@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 # Create your views here.
 from django.contrib import messages
 from .models import *
-import bcrypt
+import  bcrypt
 
 # render home page
 def home(request):
@@ -44,7 +44,7 @@ def login(request):
         else:
             messages.error(request, "Incorrect Password!")
             return redirect("/")
-
+    
 # logout and redirect
 def logout(request):
     request.session.clear()
@@ -61,5 +61,6 @@ def success(request):
         "user_id" : request.session['user_id'],
         "first_name": request.session['first_name']       
     }
+    messages.success(request,"Login successful!.")
     print(f"LOG - Rendering success page")
     return render(request, "success.html", context)
